@@ -3,7 +3,7 @@ pipeline {
      options{
         timestamps ()
         timeout(time: 10, unit: 'SECONDS')
-        // skipDefaultCheckout true
+        skipDefaultCheckout true
         buildDiscarder(logRotator(daysToKeepStr: '2'))
     }
     stages {
@@ -39,12 +39,12 @@ pipeline {
         //         }
         //     }
         // }      
-    }
+    
 
         stage('Cleanup') {
             steps {
                 sh 'docker image prune -f'
             }
-        }
+        }}
     }
 
