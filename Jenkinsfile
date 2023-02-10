@@ -3,7 +3,7 @@ pipeline {
      options{
         timestamps ()
         timeout(time: 10, unit: 'SECONDS')
-        skipDefaultCheckout true
+        // skipDefaultCheckout true
         buildDiscarder(logRotator(daysToKeepStr: '2'))
     }
     stages {
@@ -20,9 +20,6 @@ pipeline {
             }
         }
         stage('Build Docker Image'){
-            when{
-            branch "main"
-            }
             steps{
                 sh 'docker build -t apacheimage${BUILD_NUMBER}:${BUILD_NUMBER} .'
                 sh 'docker images'
@@ -34,14 +31,14 @@ pipeline {
                 sh 'docker images'
             }
         }
-        stage('deploy') {
-            steps{
-          {
-                sh 'docker run -d --name container${BUILD_NUMBER} apacheimage:2'
-                sh 'docker container ls'
-                }
-            }
-        }      
+        // stage('deploy') {
+        //     steps{
+        //   {
+        //         sh 'docker run -d --name container${BUILD_NUMBER} apacheimage:44'
+        //         sh 'docker container ls'
+        //         }
+        //     }
+        // }      
     }
 
         stage('Cleanup') {
