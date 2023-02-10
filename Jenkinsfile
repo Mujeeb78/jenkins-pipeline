@@ -26,9 +26,11 @@ pipeline {
                 sh 'docker image inspect apacheimage${BUILD_NUMBER}:${BUILD_NUMBER}'
             }
         }
+        
         stage("Manual Approval") {
-        input message: "Do you want to deploy this Docker image?"
+            input 'Do you want to deploy this Docker image?'
         }
+        
         stage('Deploy Docker Image') {
             steps{
                 sh 'docker run -d --name container${BUILD_NUMBER} apacheimage${BUILD_NUMBER}:${BUILD_NUMBER}'
