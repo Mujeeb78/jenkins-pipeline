@@ -28,7 +28,9 @@ pipeline {
         }
         
         stage("Manual Approval") {
+           steps{
             input 'Do you want to deploy this Docker image?'
+            }
         }
         
         stage('Deploy Docker Image') {
