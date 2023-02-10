@@ -1,5 +1,11 @@
 pipeline {
     agent any
+    options{
+        timestamps ()
+        timeout(time: 10, unit: 'SECONDS')
+        skipDefaultCheckout true
+        buildDiscarder(logRotator(daysToKeepStr: '2'))
+    }
     stages {
         stage("Checking Docker Version") {
             steps {
