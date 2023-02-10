@@ -3,7 +3,7 @@ pipeline {
     options{
         timestamps ()
         timeout(time: 10, unit: 'MINUTES')
-//         skipDefaultCheckout true
+        skipDefaultCheckout true
         buildDiscarder(logRotator(daysToKeepStr: '2'))
     }
     stages {
@@ -23,12 +23,11 @@ pipeline {
             steps{
                 sh 'docker build -t apacheimage${BUILD_NUMBER}:${BUILD_NUMBER} .'
                 sh 'docker images'
-                
+                sh 'docker image inspect apacheimage${BUILD_NUMBER}:${BUILD_NUMBER}'
                  }
         }
         stage('Deploy Docker Image') {
             steps{
-               
                 sh 'docker run -d --name container${BUILD_NUMBER} apacheimage${BUILD_NUMBER}:${BUILD_NUMBER}'
                 sh 'docker ps'
             }
@@ -40,8 +39,8 @@ pipeline {
                 sh 'docker ps' // to list down the conatiners
                 sh 'docker rmi -f $(docker images -q)' // to remove the images
                 sh 'docker images' // to display the images
-//                 sh 'docker image prune -f' // Removes unused images
-//                 sh 'docker images'
+//              sh 'docker image prune -f' // Removes unused images
+//              sh 'docker images'
             }
         }
     }
