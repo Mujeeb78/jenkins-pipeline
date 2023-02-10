@@ -20,12 +20,11 @@ pipeline {
                 
                  }
         }
-        stage('deploy') {
+        stage('Deploy Docker Image') {
             steps{
                
                 sh 'docker run -d --name container${BUILD_NUMBER} apacheimage13:13'
                 sh 'docker container ls'
-                
             }
         }
         stage('Cleanup') {
@@ -33,6 +32,7 @@ pipeline {
                 // sh 'docker rmi -f $(docker images -q)'
                 sh 'docker images'
                 sh 'docker image prune -f'
+                sh 'docker images'
             }
         }
     }
