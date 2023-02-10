@@ -63,9 +63,9 @@ pipeline {
         aborted {
             echo "aborted"
         }
-        always {
-                // Clean up workspace
-//                 deleteDir()
-       }
+//         always {
+//                 // Clean up workspace
+// //                 deleteDir()
+//        }
     }
 }
