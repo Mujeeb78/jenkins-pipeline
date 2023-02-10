@@ -1,22 +1,22 @@
 pipeline {
     agent any
-    options{
+    options {
         timestamps ()
         timeout(time: 10, unit: 'MINUTES')
         skipDefaultCheckout true
         buildDiscarder(logRotator(daysToKeepStr: '2'))
     }
     stages {
-        stage("Checking Docker Version") {
+        stage('Checking Docker Version') {
             steps {
                 retry(3){
-                sh "docker --version"
+                    sh 'docker --version'
                 }
             }
         }
-        stage("Checking GIT Version") {
+        stage('Checking GIT Version') {
             steps {
-                sh "git --version"
+                sh 'git --version'
             }
         }
         stage('Build Docker Image'){
@@ -24,7 +24,10 @@ pipeline {
                 sh 'docker build -t apacheimage${BUILD_NUMBER}:${BUILD_NUMBER} .'
                 sh 'docker images'
                 sh 'docker image inspect apacheimage${BUILD_NUMBER}:${BUILD_NUMBER}'
-                 }
+            }
+        }
+        stage("Manual Approval") {
+        input message: "Do you want to deploy this Docker image?"
         }
         stage('Deploy Docker Image') {
             steps{
@@ -39,8 +42,8 @@ pipeline {
                 sh 'docker ps' // to list down the conatiners
                 sh 'docker rmi -f $(docker images -q)' // to remove the images
                 sh 'docker images' // to display the images
-//              sh 'docker image prune -f' // Removes unused images
-//              sh 'docker images'
+            //              sh 'docker image prune -f' // Removes unused images
+            //              sh 'docker images'
             }
         }
     }
