@@ -23,7 +23,7 @@ pipeline {
         stage('deploy') {
             steps{
                
-                sh 'docker run -d --name container${BUILD_NUMBER} apacheimage'
+                sh 'docker run -d --name container${BUILD_NUMBER} apacheimage:13'
                 sh 'docker container ls'
                 
             }
