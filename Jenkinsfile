@@ -18,7 +18,15 @@ pipeline {
                 sh 'docker build -t apacheimage${BUILD_NUMBER}:${BUILD_NUMBER} .'
                 sh 'docker images'
                 
+                 }
         }
+        stage('deploy') {
+            steps{
+               
+                sh 'docker run -d --name container${BUILD_NUMBER} apacheimage'
+                sh 'docker container ls'
+                
+            }
         }
-        }
-        }
+    }
+}
