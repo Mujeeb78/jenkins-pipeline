@@ -31,14 +31,14 @@ pipeline {
                 sh 'docker images'
             }
         }
-        // stage('deploy') {
-        //     steps{
-        //   {
-        //         sh 'docker run -d --name container${BUILD_NUMBER} apacheimage:44'
-        //         sh 'docker container ls'
-        //         }
-        //     }
-        // }      
+        stage('deploy') {
+            steps{
+          {
+                sh 'docker run -d --name container${BUILD_NUMBER} apacheimage:44'
+                sh 'docker container ls'
+                }
+            }
+        }      
     
 
         stage('Cleanup') {
