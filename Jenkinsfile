@@ -26,13 +26,12 @@ pipeline {
                 sh 'docker image inspect apacheimage${BUILD_NUMBER}:${BUILD_NUMBER}'
             }
         }
-        
         stage("Manual Approval") {
-           steps{
-            input 'Do you want to deploy this Docker image?'
+            steps{
+                input 'Do you want to deploy this Docker image?'
             }
         }
-        
+
         stage('Deploy Docker Image') {
             steps{
                 sh 'docker run -d --name container${BUILD_NUMBER} apacheimage${BUILD_NUMBER}:${BUILD_NUMBER}'
@@ -49,6 +48,20 @@ pipeline {
             //              sh 'docker image prune -f' // Removes unused images
             //              sh 'docker images'
             }
+        }
+    }
+    post {
+        success {
+            echo "success"
+        }
+        failure {
+            echo "failure"
+        }
+        unstable {
+            echo "unstable"
+        }
+        aborted {
+            echo "aborted"
         }
     }
 }
