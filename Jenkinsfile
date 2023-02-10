@@ -30,7 +30,7 @@ pipeline {
             steps{
                
                 sh 'docker run -d --name container${BUILD_NUMBER} apacheimage${BUILD_NUMBER}:${BUILD_NUMBER}'
-                sh 'docker container ls'
+                sh 'docker ps'
             }
         }
         stage('Cleanup') {
