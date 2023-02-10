@@ -24,25 +24,25 @@ pipeline {
                 sh 'docker build -t apacheimage${BUILD_NUMBER}:${BUILD_NUMBER} .'
                 sh 'docker images'
                 
-        }
-        // stage('deploy') {
-        //     steps{
-        //        {
-        //         sh 'docker run -d --name container${BUILD_NUMBER} apacheimage44:44'
-        //         sh 'docker container ls'
-        //         }
-        //     }
-        // }      
+        }}
+        stage('deploy') {
+            steps{
+               {
+                sh 'docker run -d --name container${BUILD_NUMBER} apacheimage44:44'
+                sh 'docker container ls'
+                }
+            }}
+             
 
         stage('Cleanup') {
             steps {
                 sh 'docker rmi -f $(docker images -q)'
-
                 sh 'docker images'
-            }
                 sh 'docker image prune -f'
             }
-        }
+                
+            }
+        
         }
     }
 
