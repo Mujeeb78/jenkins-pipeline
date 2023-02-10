@@ -66,9 +66,6 @@ pipeline {
         always {
                 // Clean up workspace
                 deleteDir()
-
-                 // Archive artifacts
-                archiveArtifacts artifacts: '**/target/*.jar'
        }
     }
 }
