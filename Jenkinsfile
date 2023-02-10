@@ -35,10 +35,13 @@ pipeline {
         }
         stage('Cleanup') {
             steps {
-                // sh 'docker rmi -f $(docker images -q)'
-                sh 'docker images'
-                sh 'docker image prune -f'
-                sh 'docker images'
+                sh 'docker kill $(docker ps -q)' // to kill the conatainers
+                sh 'docker rm $(docker ps -a -q)' // to remove the conatiners
+                sh 'docker ps' // to list down the conatiners
+                sh 'docker rmi -f $(docker images -q)' // to remove the images
+                sh 'docker images' // to display the images
+                // sh 'docker image prune -f'
+                // sh 'docker images'
             }
         }
     }
