@@ -10,7 +10,7 @@ pipeline {
         stage('Checking Docker Version') {
             steps {
                 retry(3){
-                    sh 'dock --version'
+                    sh 'docker --version'
                 }
             }
         }
