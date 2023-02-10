@@ -28,5 +28,12 @@ pipeline {
                 
             }
         }
+        stage('Cleanup') {
+            steps {
+                sh 'docker rmi -f $(docker images -q)'
+                sh 'docker images'
+                sh 'docker image prune -f'
+            }
+        }
     }
 }
