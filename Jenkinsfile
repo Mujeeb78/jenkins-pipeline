@@ -52,16 +52,16 @@ pipeline {
     }
     post {
         success {
-            echo "success"
+           emailext body: 'BUILD IS SUCCESSFULL', subject: 'BUILD STATUS', to: 'mujeeb9742@gmail.com'
         }
         failure {
-            echo "failure"
+            emailext body: 'BUILD IS FAILURE', subject: 'BUILD STATUS', to: 'mujeeb9742@gmail.com'
         }
         unstable {
-            echo "unstable"
+            emailext body: 'BUILD IS SUCCESSFULL', subject: 'BUILD STATUS', to: 'mujeeb9742@gmail.com'
         }
         aborted {
-            echo "aborted"
+           emailext body: 'BUILD IS ABORTED', subject: 'BUILD STATUS', to: 'mujeeb9742@gmail.com'
         }
 //         always {
 //                 // Clean up workspace
