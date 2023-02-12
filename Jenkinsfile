@@ -52,10 +52,10 @@ pipeline {
     }
     post {
         success {
-           emailext body: 'BUILD IS SUCCESSFULL', subject: 'BUILD STATUS', to: 'mujeeb9742@gmail.com'
+           emailext body: 'BUILD IS SUCCESSFULL', subject: 'BUILD STATUS', to: 'Mujeeb.Ahmed@in.bosch.com'
         }
         failure {
-            emailext body: 'BUILD IS FAILURE', subject: 'BUILD STATUS', to: 'mujeeb9742@gmail.com'
+            emailext body: 'BUILD IS FAILURE', subject: 'BUILD STATUS', to: 'Mujeeb.Ahmed@in.bosch.com'
         }
         unstable {
             emailext body: 'BUILD IS SUCCESSFULL', subject: 'BUILD STATUS', to: 'mujeeb9742@gmail.com'
