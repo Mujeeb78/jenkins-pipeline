@@ -52,13 +52,12 @@ pipeline {
     }
     post {
         success {
-           emailext body: 'BUILD IS SUCCESSFULL', subject: 'BUILD STATUS', to: 'mujeeb9742@gmail.com'
-        }
+            emailext attachLog: true, body: 'Build is SUCCESSFULL', subject: 'BUILD STATUS', to: 'mujeeb9742@gmail.com'        }
         failure {
-            emailext body: 'BUILD IS FAILURE', subject: 'BUILD STATUS', to: 'mujeeb9742@gmail.com'
+            emailext attachLog: true, body: 'Build is FAIlED', subject: 'BUILD STATUS', to: 'mujeeb9742@gmail.com'
         }
         unstable {
-            emailext body: 'BUILD IS UNSTABLE', subject: 'BUILD STATUS', to: 'mujeeb9742@gmail.com'
+            emailext attachLog: true, body: 'Build is UNSTABLE', subject: 'BUILD STATUS', to: 'mujeeb9742@gmail.com'
         }
         aborted {
            emailext body: 'BUILD IS ABORTED', subject: 'BUILD STATUS', to: 'mujeeb9742@gmail.com'
