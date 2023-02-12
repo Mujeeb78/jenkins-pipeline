@@ -54,7 +54,7 @@ pipeline {
         success {
 //             emailext attachLog: true, body: 'Build is SUCCESSFULL', subject: 'BUILD STATUS', to: 'mujeeb9742@gmail.com'       
         echo "Success"
-        '}
+        }
         failure {
             emailext attachLog: true, body: 'Build is FAIlED', subject: 'BUILD STATUS', to: 'mujeeb9742@gmail.com'
         }
