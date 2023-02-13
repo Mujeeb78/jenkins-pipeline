@@ -51,18 +51,14 @@ pipeline {
         }
     }
     post {
-        success {
-//             emailext attachLog: true, body: 'Build is SUCCESSFULL', subject: 'BUILD STATUS', to: 'mujeeb9742@gmail.com'       
-        echo "Success"
+        success {           
+            emailext attachLog: true, body: 'Build is SUCCESSFULL', subject: 'BUILD STATUS', to: 'Mujeeb.Ahmed@in.bosch.com'       
         }
         failure {
-            emailext attachLog: true, body: 'Build is FAIlED', subject: 'BUILD STATUS', to: 'mujeeb9742@gmail.com'
-        }
-        unstable {
-            emailext attachLog: true, body: 'Build is UNSTABLE', subject: 'BUILD STATUS', to: 'mujeeb9742@gmail.com'
+            emailext attachLog: true, body: 'Build is FAIlED', subject: 'BUILD STATUS', to: 'Mujeeb.Ahmed@in.bosch.com'
         }
         aborted {
-           emailext body: 'BUILD IS ABORTED', subject: 'BUILD STATUS', to: 'mujeeb9742@gmail.com'
+           emailext  attachLog: true, body: 'BUILD IS ABORTED', subject: 'BUILD STATUS', to: 'Mujeeb.Ahmed@in.bosch.com'
         }
 //         always {
 //                 // Clean up workspace
