@@ -21,9 +21,9 @@ pipeline {
         }
         stage('Build Docker Image'){
             steps{
-                sh 'docker build -t apacheimage${BUILD_NUMBER}:${BUILD_NUMBER} .'
+                sh 'docker build -t apacheimage:${BUILD_NUMBER} .'
                 sh 'docker images'
-                sh 'docker image inspect apacheimage${BUILD_NUMBER}:${BUILD_NUMBER}'
+                sh 'docker image inspect apacheimage:${BUILD_NUMBER}'
             }
         }
         stage("Manual Approval") {
@@ -34,7 +34,7 @@ pipeline {
 
         stage('Deploy Docker Image') {
             steps{
-                sh 'docker run -d --name container${BUILD_NUMBER} apacheimage${BUILD_NUMBER}:${BUILD_NUMBER}'
+                sh 'docker run -d --name container${BUILD_NUMBER} apacheimage:${BUILD_NUMBER}'
                 sh 'docker ps'
             }
         }
